@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'Poppins',sans-serif;
+}
+h1{
+    padding: 0;
+    margin: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.container-fluid{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #68EACC 0%, #497BE8 100%);
+}
+.todo-app{
+    width: 35vw;
+    margin: auto;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    top: 10vh;
+    padding : 30px 35px 45px 35px;
+}
+.app-header{
+    margin-bottom: 25px;
+}
+.app-header h1{
+    font-weight: 600;
+    font-size: 34px;
+}
+.app-body form .form-control{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+.app-body form .form-control{
+    margin: 0 !important;
+}
+.app-body form .form-control-two{
+    padding-bottom: 20px !important;
+}
+.form-control input, .form-control-two input{
+    padding : 8px 0px 8px 15px;
+    font-size: 16px;
+    width : 85%;
+    border-radius: 4px;
+    outline: none;
+    border : 1px solid rgba(0,0,0,0.2);
+}
+
+.form-control button, .form-control-two button{
+    font-size: 20px;
+    padding : 4.5px 12px;
+    outline: none;
+    display : inline-block;
+    border : 1px solid #A000EC;
+    background : #A000EC;
+    margin : 0;
+    cursor: pointer;
+    border-radius: 4px;
+    color : #fff;
+}
+
+.app-body form .form-control-two{
+    position: relative !important;
+    margin: 15px 0 !important;
+}
+.form-control-two input{
+    width : 100%;
+    position: absolute;
+    z-index: 0;
+}
+.submit-first, .submit-last{
+    z-index: 55;
+    position:absolute;
+    right: 50px; 
+    padding : 4.5px 12px 5px 12px !important;
+    margin-top: 0.5px !important;
+    border-radius: 4px 0 0 4px !important;
+    border-color: #F72100 !important;
+    background: #F72100 !important;
+}
+.submit-last{
+    right: 0;
+    border-radius: 0 4px 4px 0 !important;
+}

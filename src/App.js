@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import TodoApp from './todoApp.js';
 
 class App extends Component {
   render() {
     return (
       <>
-        <h1>salom</h1>
-        
+        <TodoApp/>        
       </>
     )
   }
