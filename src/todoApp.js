@@ -4,40 +4,44 @@ import './css/main.css';
 
 class TodoApp extends Component {
 
-    state = {
+   constructor(props) {
+       super(props);
+
+       this.state = {
         input : '',
+    }
+
+   }
+
+    handleInputChange =(e)=>{
+        const value = e.target.value;
+        
     }
 
   render() {
     return (
       <>
-        <div class="container-fluid">
-            <div class="todo-app">
-                <div class="app-header">
-                    <h1>Todo App</h1>
+          <div class="wrapper">
+                <div class="todo-header">
+                    Todo App
                 </div>
-                <div class="app-body">
-                    <form action="">
-                        <div class="form-control">
-                            <input type="text" placeholder="Add your new todo"/>
-                            <button type="submit">
-                                <i class="fa fa-plus">
-                                </i>
-                            </button>
-                        </div>
-                        <div class="form-control-two">
-                            <input type="text" placeholder="Add your new todo" class="input" />
-                            <button class="submit-first" type="submit">
-                            <i class="fas fa-marker"></i>
-                            </button>
-                            <button class="submit-last"  type="submit">
-                            <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </form>
+                <div class="todo-body">
+                    <input type="text" placeholder="Add your new todo"/>
+                    <button>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul class="todo-list">
+
+                </ul>
+                <div class="footer">
+                    <span>You have
+                        <span class="count"></span>
+                        pending tasks
+                    </span>
+                    <button>Clear All</button>
                 </div>
             </div>
-        </div>
       </>
     )
   }
