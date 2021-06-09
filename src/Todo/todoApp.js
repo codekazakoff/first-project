@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import './css/main.css';
+import '../css/todo/todo.css';
 
 class TodoApp extends Component {
 
