@@ -28,12 +28,11 @@ class Increment_VS_Decrement extends Component {
     const { counter } = this.state;
     const {handleIncrement,handleDecrement} = this;
     return (
-      <React.Fragment>
-        <h2>salom bu oddiy h1</h2>
-        <span style={{marginRight : "1rem"}}>{counter}</span>
-        <button onClick={handleIncrement}>+</button>
-        <button onClick={handleDecrement}>-</button>
-      </React.Fragment>
+      <div>
+        <span>{counter}</span>
+        <button onClick={handleIncrement}>Add</button>
+        <button onClick={handleDecrement}>Minus</button>
+      </div>
     );
   }
 }

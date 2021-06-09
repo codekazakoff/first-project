@@ -1,0 +1,26 @@
+span{
+    font-size: 25px;
+    width: 50px;
+    margin: 0 auto;
+}
+button{
+    display: inline-block;
+    width: 80px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    border:  none;
+    border-radius: 4px;
+    margin: 0 15px;
+    background : orange;
+    height: 35px;
+}
+button:last-child{
+    background : rgb(0, 255, 34);
+}
+div{
+    text-align: center;
+    margin : 40vh 0;
+}
