@@ -24,13 +24,19 @@ class Increment_VS_Decrement extends Component {
     })
   }
   
-  render() {
-    console.log("salom increment",this.state.counter);
+  handleCount =()=>{
     const { counter } = this.state;
-    const {handleIncrement,handleDecrement} = this;
+    return counter === 0 ? "Zero" : counter;
+  }
+
+  render() {
+    const {handleIncrement,handleDecrement,handleCount} = this;
+
+    
+
     return (
       <div>
-        <span>{counter}</span>
+        <span>{handleCount()}</span>
         <button onClick={handleIncrement}>Add</button>
         <button onClick={handleDecrement}>Minus</button>
       </div>

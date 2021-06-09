@@ -56,7 +56,7 @@ body{
     font-size: 21px;
     border-radius: 3px;
     opacity: 0.6;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 .todo-body button:hover{
     background: #721ce3;
