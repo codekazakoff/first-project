@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import "../css/inc_vs_dec/inc_vs_dec.css";
+import "../../css/inc_vs_dec/inc_vs_dec.css";
+
 class Increment_VS_Decrement extends Component {
 
   constructor(props) {
