@@ -8,46 +8,61 @@ class TodoApp extends Component {
 
     this.state = {
       input: "",
+      todos: [],
+      id: "",
     };
   }
-
-  handleInputChange = (event) => {
-    const value = event.target.value;
-    // console.log(value);
-    if(value.trim() !== 0){
+  handleInputChange =(e)=> {
+    this.setState({
+      input : e.target.value
+    })
+    // console.log();
+  }
+  onSubmit =(e)=>{
+    e.preventDefault(); 
+    let todo = {
+      id: this.state.id,
+      input : this.state.input,
     }
-  };
-  handleAddTodo =()=>{
-      const {input} = this.state;
-        console.log(input);
+    this.setState({
+      todos : this.state.todos.concat(todo),
+      id : this.state.id + 1,
+    })
   }
 
   render() {
-      const {handleInputChange,handleAddTodo} = this;
-
-
+    const {handleInputChange,onSubmit} = this;
     return (
       <>
-        <div className="wrapper">
-          <div className="todo-header">Todo App</div>
-          <div className="todo-body">
-            <input type="text" placeholder="Add your new todo" 
-                onChange={handleInputChange}
-            />
-            <button onClick={handleAddTodo}>
-              <i className="fas fa-plus"></i>
-            </button>
-          </div>
-          <ul className="todo-list"></ul>
-          <div className="footer">
-            <span>
-              You have
-              <span className="count"></span>
-              pending tasks
-            </span>
-            <button>Clear All</button>
-          </div>
-        </div>
+        <section>
+          <div className="container">
+            <form onSubmit={onSubmit}>
+              <div className="form-controls">
+              <h1>Todo App</h1>
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter your todo text"
+                  id="id"
+                  onChange={handleInputChange}
+                />
+                <button >
+                  <i className="fas fa-plus"></i>
+                </button>
+              </div>
+            </form>
+            <table>
+              <tbody>
+                {this.state.todos.map(todo => (
+                  <tr key={todo.id}>
+                    <td>{todo.input}</td>
+                    <td><button>Delete</button></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+           </div> 
+        </section>
       </>
     );
   }
