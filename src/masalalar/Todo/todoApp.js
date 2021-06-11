@@ -7,62 +7,77 @@ class TodoApp extends Component {
     super(props);
 
     this.state = {
-      input: "",
+      valueOff: "",
       todos: [],
-      id: "",
+      id: 0
     };
   }
-  handleInputChange =(e)=> {
+  handleInputChange = (e) => {
     this.setState({
-      input : e.target.value
+      valueOff: e.target.value
     })
-    // console.log();
   }
-  onSubmit =(e)=>{
-    e.preventDefault(); 
+  onSubmit = (e) => {
+    const { valueOff, id, todos } = this.state;
+    e.preventDefault();
     let todo = {
-      id: this.state.id,
-      input : this.state.input,
+      id: id,
+      value: valueOff,
     }
     this.setState({
-      todos : this.state.todos.concat(todo),
-      id : this.state.id + 1,
+      todos: [...todos, todo],
+      id: id + 1,
+      valueOff: ''
+    })
+  }
+  onDelete = (id) => {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.filter(item => (
+        item.id !== id
+      ))
+    })
+  }
+  onDeleteAllTodo = () => {
+    this.setState({
+      todos: []
     })
   }
 
   render() {
-    const {handleInputChange,onSubmit} = this;
+    const { handleInputChange, onSubmit, onDelete, onDeleteAllTodo } = this;
+    const { todos, valueOff } = this.state;
     return (
       <>
-        <section>
-          <div className="container">
-            <form onSubmit={onSubmit}>
-              <div className="form-controls">
-              <h1>Todo App</h1>
-                <input
-                  type="text"
-                  required
-                  placeholder="Enter your todo text"
-                  id="id"
-                  onChange={handleInputChange}
-                />
-                <button >
-                  <i className="fas fa-plus"></i>
-                </button>
-              </div>
-            </form>
-            <table>
-              <tbody>
-                {this.state.todos.map(todo => (
-                  <tr key={todo.id}>
-                    <td>{todo.input}</td>
-                    <td><button>Delete</button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-           </div> 
-        </section>
+        <div className="wrapper">
+          <div className="todo-header">
+            Todo App
+        </div>
+          <div className="todo-body">
+            <input value={valueOff} required type="text" placeholder="Add your new todo" onChange={handleInputChange} />
+            <button onClick={onSubmit} className={valueOff !== '' ? 'btn active' : 'btn'}>
+              <i className="fas fa-plus"></i>
+            </button>
+          </div>
+          {todos.map(({ id, value }) => (
+            <ul className="todo-list" key={id}>
+              <li>
+                {value}
+                <span className="icon" onClick={() => onDelete(id)}>
+                  <i className="fas fa-trash"></i>
+                </span>
+              </li>
+            </ul>
+          ))}
+          <div className="footer">
+            <span>You have
+                <span className="count"></span>
+                pending tasks
+            </span>
+            <button onClick={onDeleteAllTodo} className={valueOff === '' ? 'btn active' : 'btn'}>Clear All</button>
+          </div>
+        </div>
+
       </>
     );
   }
