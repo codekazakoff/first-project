@@ -9,7 +9,7 @@ class TodoApp extends Component {
     this.state = {
       valueOff: "",
       todos: [],
-      id: 0
+      id: 0,
     };
   }
   handleInputChange = (e) => {
@@ -19,6 +19,7 @@ class TodoApp extends Component {
   }
   onSubmit = (e) => {
     const { valueOff, id, todos } = this.state;
+
     e.preventDefault();
     let todo = {
       id: id,
@@ -27,7 +28,7 @@ class TodoApp extends Component {
     this.setState({
       todos: [...todos, todo],
       id: id + 1,
-      valueOff: ''
+      valueOff: '',
     })
   }
   onDelete = (id) => {
@@ -46,20 +47,20 @@ class TodoApp extends Component {
 
   render() {
     const { handleInputChange, onSubmit, onDelete, onDeleteAllTodo } = this;
-    const { todos, valueOff } = this.state;
+    const { todos, valueOff} = this.state;
     return (
       <>
         <div className="wrapper">
           <div className="todo-header">
             Todo App
         </div>
-          <div className="todo-body">
+          <form onSubmit={onSubmit} className="todo-body">
             <input value={valueOff} required type="text" placeholder="Add your new todo" onChange={handleInputChange} />
-            <button onClick={onSubmit} className={valueOff !== '' ? 'btn active' : 'btn'}>
+            <button className={valueOff !== '' ? 'btn active' : 'btn'}>
               <i className="fas fa-plus"></i>
             </button>
-          </div>
-          {todos.map(({ id, value }) => (
+          </form>
+          { todos.map(({ id, value }) => (
             <ul className="todo-list" key={id}>
               <li>
                 {value}
