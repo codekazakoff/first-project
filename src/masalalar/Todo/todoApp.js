@@ -19,7 +19,7 @@ class TodoApp extends Component {
   };
   onSubmit = (e) => {
     const { valueOff, id, todos } = this.state;
-
+    
     e.preventDefault();
     let todo = {
       id: id,
