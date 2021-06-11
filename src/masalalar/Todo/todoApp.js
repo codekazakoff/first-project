@@ -26,7 +26,6 @@ class TodoApp extends Component {
       const {handleInputChange,handleAddTodo} = this;
 
 
-
     return (
       <>
         <div className="wrapper">

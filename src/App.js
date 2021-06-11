@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
+import Tenglama from './masalalar/kvadrat/kvadratTenglama'
 // import Increment_VS_Decrement from './masalalar/Inc_vs_Dec/increment_vs_decrement.js';
-import TodoApp from './masalalar/Todo/todoApp.js';
 
 class App extends Component {
   render() {
     return (
       <>
-        {/* <Increment_VS_Decrement/>    */}
-        <TodoApp/>
+        {/* <Increment_VS_Decrement/> */}
+        <Tenglama/>
       </>
     )
   }
