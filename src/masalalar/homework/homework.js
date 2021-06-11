@@ -18,24 +18,48 @@ class HomeWork extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            cinemas : movies
         }
     }
+    handleDelete =(id)=>{
+        const {cinemas} = this.state;
+        this.setState({
+            cinemas : cinemas.filter(cinema => cinema.id !== id)
+        })
+    }
     render() {
+        const  { cinemas } = this.state;
+        const {handleDelete} = this;
+        console.log(cinemas); 
         return (
-            <div>
-                {movies.map(movie => (
-                    <ul key={movie.id}>
-                        <li>{movie.title}</li>
-                        <li>{movie.genre}</li>
-                        <li>{movie.stock}</li>
-                        <li>{movie.rate}</li>
-                        <li>
-                            <button>Delete</button>
-                        </li>
-                    </ul>
-                ))}
-            </div>
+            <>
+        <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Genre</th>
+                            <th>Stock</th>
+                            <th>Rate</th>
+                            <th>Caption</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {cinemas.map( ({id,title,genre,stock,rate}) => (
+                            <tr key={id}>
+                                <td>{title}</td>
+                                <td>{genre}</td>
+                                <td>{stock}</td>
+                                <td>{rate}</td>
+                                <td>
+                                    <button onClick={()=>handleDelete(id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                </section>
+            </>
         )
     }
 }

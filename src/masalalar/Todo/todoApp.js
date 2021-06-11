@@ -37,14 +37,13 @@ class TodoApp extends Component {
       todos: todos.map((todo) =>
         todo.id !== todoId ? todo : { ...todo, value: valueOff }
       ),
-      valueOff : ''
+      valueOff: "",
     });
-    console.log(todos);
   };
   onDelete = (id) => {
     const { todos } = this.state;
     this.setState({
-      todos: todos.filter((item) => item.id !== id),
+      todos: todos.filter((todo) => todo.id !== id),
     });
   };
   onDeleteAllTodo = () => {
