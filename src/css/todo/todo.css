@@ -83,7 +83,7 @@ body{
     cursor: default;
     overflow: hidden;
   }
-  .todo-list li .icon{
+  .todo-list li .icon, .icon-one{
     position: absolute;
     right: -45px;
     background: #e74c3c;
@@ -93,6 +93,13 @@ body{
     border-radius: 0 3px 3px 0;
     cursor: pointer;
     transition: all 0.2s ease;
+  }
+  .todo-list li .icon-one{
+    border-radius:  3px 0 0 3px ;
+    background: #0c08e7;
+  }
+  .todo-list li:hover .icon-one{
+    right: 48px;
   }
   .todo-list li:hover .icon{
     right: 0px;

@@ -14,9 +14,9 @@ class TodoApp extends Component {
   }
   handleInputChange = (e) => {
     this.setState({
-      valueOff: e.target.value
-    })
-  }
+      valueOff: e.target.value,
+    });
+  };
   onSubmit = (e) => {
     const { valueOff, id, todos } = this.state;
 
@@ -24,46 +24,67 @@ class TodoApp extends Component {
     let todo = {
       id: id,
       value: valueOff,
-    }
+    };
     this.setState({
       todos: [...todos, todo],
       id: id + 1,
-      valueOff: '',
-    })
-  }
+      valueOff: "",
+    });
+  };
+  handleEdit = (todoId) => {
+    const { todos, valueOff } = this.state;
+    this.setState({
+      todos: todos.map((todo) =>
+        todo.id !== todoId ? todo : { ...todo, value: valueOff }
+      ),
+      valueOff : ''
+    });
+    console.log(todos);
+  };
   onDelete = (id) => {
     const { todos } = this.state;
     this.setState({
-      todos: todos.filter(item => (
-        item.id !== id
-      ))
-    })
-  }
+      todos: todos.filter((item) => item.id !== id),
+    });
+  };
   onDeleteAllTodo = () => {
     this.setState({
-      todos: []
-    })
-  }
+      todos: [],
+    });
+  };
 
   render() {
-    const { handleInputChange, onSubmit, onDelete, onDeleteAllTodo } = this;
-    const { todos, valueOff} = this.state;
+    const {
+      handleInputChange,
+      onSubmit,
+      onDelete,
+      onDeleteAllTodo,
+      handleEdit,
+    } = this;
+    const { todos, valueOff } = this.state;
     return (
       <>
         <div className="wrapper">
-          <div className="todo-header">
-            Todo App
-        </div>
+          <div className="todo-header">Todo App</div>
           <form onSubmit={onSubmit} className="todo-body">
-            <input value={valueOff} required type="text" placeholder="Add your new todo" onChange={handleInputChange} />
-            <button className={valueOff !== '' ? 'btn active' : 'btn'}>
+            <input
+              value={valueOff}
+              required
+              type="text"
+              placeholder="Add your new todo"
+              onChange={handleInputChange}
+            />
+            <button className={valueOff !== "" ? "btn active" : "btn"}>
               <i className="fas fa-plus"></i>
             </button>
           </form>
-          { todos.map(({ id, value }) => (
+          {todos.map(({ id, value }) => (
             <ul className="todo-list" key={id}>
               <li>
                 {value}
+                <span className="icon-one" onClick={() => handleEdit(id)}>
+                  <i className="fas fa-pen"></i>
+                </span>
                 <span className="icon" onClick={() => onDelete(id)}>
                   <i className="fas fa-trash"></i>
                 </span>
@@ -71,14 +92,19 @@ class TodoApp extends Component {
             </ul>
           ))}
           <div className="footer">
-            <span>You have
-                <span className="count"></span>
-                pending tasks
+            <span>
+              You have
+              <span className="count"></span>
+              pending tasks
             </span>
-            <button onClick={onDeleteAllTodo} className={valueOff === '' ? 'btn active' : 'btn'}>Clear All</button>
+            <button
+              onClick={onDeleteAllTodo}
+              className={valueOff === "" ? "btn active" : "btn"}
+            >
+              Clear All
+            </button>
           </div>
         </div>
-
       </>
     );
   }
