@@ -6,7 +6,16 @@ table, tr, td, th{
         text-align: start;
         padding: 15px 0;
 }
-
+tbody > tr > .last-child{
+    display:  flex;
+    align-self: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.heart-icon:active{
+    transition: 0.4s all linear;
+    transform: scale(0.7);    
+}
 section{
     max-width: 1000px;
     width: 100%;

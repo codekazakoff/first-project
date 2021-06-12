@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import '../../css/movies/movies.css';
 import { getMovies } from "../../services/fakeServis";
-import {AiFillHeart,AiOutlineHeart} from 'react-icons/ai';
+
+import TableMovies from "./movies-table";
+
+import "../../css/movies/movies.css";
 class Movies extends Component {
   constructor(props) {
     super(props);
@@ -17,9 +19,9 @@ class Movies extends Component {
   };
   handleLike = (id) => {
     const { cinemas } = this.state;
-    const movies = cinemas.find( movie => movie.id === id);
+    const movies = cinemas.find((movie) => movie.id === id);
     movies.isLiked = movies.isLiked ? false : true;
-    this.setState({ cinemas});
+    this.setState({ cinemas });
   };
   render() {
     const { cinemas } = this.state;
@@ -33,33 +35,11 @@ class Movies extends Component {
           ) : (
             <div>
               <h4>Bizda {count} ta mahsulot bor</h4>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Genre</th>
-                    <th>Stock</th>
-                    <th>Rate</th>
-                    <th>Caption</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cinemas.map(({ id, title, genre, stock, rate, isLiked }) => (
-                    <tr key={id}>
-                      <td>{title}</td>
-                      <td>{genre}</td>
-                      <td>{stock}</td>
-                      <td>{rate}</td>
-                      <td style={{cursor : 'pointer'}}>
-                        <span onClick={() => handleLike(id)}>
-                        {isLiked ? <AiOutlineHeart  size="2rem" color="red"/> : <AiFillHeart size="2rem" color="red"/>}
-                        </span>
-                        <button onClick={() => handleDelete(id)}>Delete</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <TableMovies
+                data={cinemas}
+                onDelete={handleDelete}
+                onLike={handleLike}
+              />
             </div>
           )}
         </section>
@@ -67,4 +47,5 @@ class Movies extends Component {
     );
   }
 }
+
 export default Movies;
