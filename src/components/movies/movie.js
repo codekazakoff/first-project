@@ -17,9 +17,13 @@ class Movies extends Component {
   };
   handleLike = (id) => {
     const { cinemas } = this.state;
-    const movies = cinemas.find((movie) => movie.id === id);
-    movies.isLiked = movies.isLiked ? false : true;
-    this.setState({ cinemas });
+    const movies = cinemas.map((movie) =>
+      movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
+    );
+    this.setState({ cinemas: movies });
+    // const movies = cinemas.find((movie) => movie.id === id);
+    // movies.isLiked = movies.isLiked ? false : true;
+    // this.setState({ cinemas: movies });
   };
   render() {
     const { cinemas } = this.state;
