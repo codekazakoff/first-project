@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import "../../css/homework/homework.css";
+import '../../css/movies/movies.css';
 import { getMovies } from "../../services/fakeServis";
 import {AiFillHeart,AiOutlineHeart} from 'react-icons/ai';
-import like from "../../assists/img/like.png";
-import dislike from "../../assists/img/dislike.png";
-class HomeWork extends Component {
+class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,4 +67,4 @@ class HomeWork extends Component {
     );
   }
 }
-export default HomeWork;
+export default Movies;

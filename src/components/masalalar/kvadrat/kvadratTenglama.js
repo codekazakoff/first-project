@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../../css/kvadrat/kvadrat.css';
+import '../../../css/masalaStyle/kvadrat.css';
 class Tenglama extends Component {
   constructor(props) {
     super(props);
