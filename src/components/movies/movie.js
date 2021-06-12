@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../../services/fakeServis";
-
 import TableMovies from "./movies-table";
-
 import "../../css/movies/movies.css";
 class Movies extends Component {
   constructor(props) {
