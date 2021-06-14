@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies } from "../../services/fakeServis";
+import { getMovies } from "../../db/fakeServis";
 import TableMovies from "./MoviesTable";
 import "../../css/movies/movies.css";
 class Movies extends Component {
