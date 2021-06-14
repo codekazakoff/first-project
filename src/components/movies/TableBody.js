@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Like from "./like";
+import Like from "./Like";
 
 class TableBody extends Component {
   constructor(props) {

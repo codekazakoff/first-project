@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import Movies from './components/movies/movie.js';
+import React, { Component } from "react";
+import Movies from "./components/movies/Movie.js";
 class App extends Component {
   render() {
     return (
       <>
-        <Movies/>
+        <Movies />
       </>
-    )
+    );
   }
 }
 
-export default  App;
+export default App;

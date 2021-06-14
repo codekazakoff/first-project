@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import TableHeader from "./table-header";
-import TableBody from "./table-body";
+import TableHeader from "./TableHeader";
+import TableBody from "./TableBody";
 
 class TableMovies extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../../services/fakeServis";
-import TableMovies from "./movies-table";
+import TableMovies from "./MoviesTable";
 import "../../css/movies/movies.css";
 class Movies extends Component {
   constructor(props) {
@@ -21,9 +21,6 @@ class Movies extends Component {
       movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
     );
     this.setState({ cinemas: movies });
-    // const movies = cinemas.find((movie) => movie.id === id);
-    // movies.isLiked = movies.isLiked ? false : true;
-    // this.setState({ cinemas: movies });
   };
   render() {
     const { cinemas } = this.state;
