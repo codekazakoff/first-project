@@ -9,7 +9,17 @@ class TableMovies extends Component {
     return (
       <>
         <table>
-          <TableHeader />
+          <TableHeader>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Stock</th>
+                <th>Rate</th>
+                <th>Caption</th>
+              </tr>
+            </thead>
+          </TableHeader>
           <TableBody data={data} onDelete={onDelete} onLike={onLike} />
         </table>
       </>
@@ -18,7 +28,7 @@ class TableMovies extends Component {
 }
 
 TableMovies.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   onDelete: PropTypes.func,
   onLike: PropTypes.func,
 };

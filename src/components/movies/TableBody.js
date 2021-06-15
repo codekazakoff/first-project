@@ -29,7 +29,7 @@ class TableBody extends Component {
 }
 
 TableBody.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   onDelete: PropTypes.func,
   onLike: PropTypes.func,
 };

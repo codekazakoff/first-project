@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 class TableHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: this.props.children,
+    };
+  }
   render() {
-    return (
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Genre</th>
-          <th>Stock</th>
-          <th>Rate</th>
-          <th>Caption</th>
-        </tr>
-      </thead>
-    );
+    console.log(this.props.children, "table handler");
+    return <>{this.state.movies }</>;
   }
 }
-
+TableHeader.propTypes = {
+  children: PropTypes.object,
+};
 export default TableHeader;
