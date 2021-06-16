@@ -30,6 +30,7 @@ class Movies extends Component {
       // selectGenre: selectGenreOne(),
       selectGenre: selectGenreMovie,
       selectedGenre: {} || null,
+      color: "red",
     };
   }
 
@@ -51,7 +52,15 @@ class Movies extends Component {
   handleSelectMovie = (selectedGenre) => {
     this.setState({ selectedGenre });
   };
-
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.setState({ color: "Yellow" });
+  //   }, 1000);
+  // }
+  componentDidUpdate() {
+    document.getElementById("mydiv").innerHTML =
+      "The updated favorite is " + this.state.color;
+  }
   render() {
     const { cinemas, selectGenre, selectedGenre } = this.state;
 
@@ -78,6 +87,7 @@ class Movies extends Component {
                 onDelete={handleDelete}
                 onLike={handleLike}
               />
+              <div id="mydiv"></div>
             </div>
           )}
         </section>
