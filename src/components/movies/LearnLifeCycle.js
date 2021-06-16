@@ -1,37 +1,33 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-class ScrollingList extends Component {
+
+class LearnLifeCycle extends Component {
   constructor(props) {
     super(props);
-    this.listRef = React.createRef();
+    this.state = {
+      name: "Shohrux",
+      count: 0,
+    };
+    // console.log("constructor - App");
   }
 
-  getSnapshotBeforeUpdate(prevProps) {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust scroll later.
-    if (prevProps.list.length < this.props.list.length) {
-      const list = this.listRef.current;
-      return list.scrollHeight - list.scrollTop;
-    }
-    return null;
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // If we have a snapshot value, we've just added new items.
-    // Adjust scroll so these new items don't push the old ones out of view.
-    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
-    if (snapshot !== null) {
-      const list = this.listRef.current;
-      list.scrollTop = list.scrollHeight - snapshot;
-    }
+  componentDidMount() {
+    // console.log("DidMounting - App");
+    console.log(this.state.name);
+    this.setState(() => ({ name: "farrux", count: this.state.count + 1 }));
+    console.log(this.state.name);
+    this.setState(() => ({ name: "kamron", count: this.state.count + 1 }));
+    console.log(this.state.name);
+    this.setState(() => ({ name: "jahon", count: this.state.count + 1 }));
+    console.log(this.state.name);
   }
 
   render() {
-    return <div ref={this.listRef}>{/* ...contents... */}</div>;
+    // console.log("render - App");
+    return (
+      <>
+        {this.state.name} {this.state.count}
+      </>
+    );
   }
 }
-
-ScrollingList.propTypes = {
-  list: PropTypes.array,
-};
-export default ScrollingList;
+export default LearnLifeCycle;
