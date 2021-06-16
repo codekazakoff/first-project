@@ -87,7 +87,7 @@ class Movies extends Component {
                 onDelete={handleDelete}
                 onLike={handleLike}
               />
-              <div id="mydiv"></div>
+              {/* <div id="mydiv"></div> */}
             </div>
           )}
         </section>

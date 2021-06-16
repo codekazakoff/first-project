@@ -6,7 +6,6 @@ class Like extends Component {
     super(props);
     this.state = {};
   }
-  TableMovies;
   render() {
     const { isLiked, onLike, id } = this.props;
     return (
