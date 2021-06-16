@@ -8,8 +8,7 @@ class TableHeader extends Component {
     };
   }
   render() {
-    console.log(this.props.children, "table handler");
-    return <>{this.state.movies }</>;
+    return <>{this.state.movies}</>;
   }
 }
 TableHeader.propTypes = {

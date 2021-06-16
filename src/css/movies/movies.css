@@ -1,45 +1,74 @@
-table, tr, td, th{
-        border-bottom : 1px solid #eee;
-        border-collapse: collapse;
-        table-layout: fixed;
-        width: 100%;
-        text-align: start;
-        padding: 15px 0;
+table,
+tr,
+td,
+th {
+  border-bottom: 1px solid #eee;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  text-align: start;
+  padding: 15px 0;
 }
-tbody > tr > .last-child{
-    display:  flex;
-    align-self: center;
-    justify-content: space-between;
-    cursor: pointer;
+tbody > tr > .last-child {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
-.heart-icon:active{
-    transition: 0.4s all linear;
-    transform: scale(0.7);    
+.heart-icon:active {
+  transition: 0.4s all linear;
+  transform: scale(0.7);
 }
-section{
-    max-width: 1000px;
-    width: 100%;
-    margin: 0 auto;
+section {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
 }
-button{
-    background-color: #E10028;
-    color: #fff;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    padding: 6px 12px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 14px;
+button {
+  background-color: #e10028;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
 }
-h4{
-    margin: 20px 0;
-    font-size: 22px;
+h4 {
+  margin: 20px 0;
+  font-size: 22px;
 }
-img{
-    width: 30px;
-    height: 30px;
-    margin-right: 15px;
-    margin-top: 10px;
-    cursor: pointer;
+img {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.list-group {
+  display: flex !important;
+  justify-content: flex-start;
+  align-items: center;
+}
+.list-item {
+  list-style: none;
+  margin: 0 25px;
+}
+.list-item:first-child {
+  margin-left: 0;
+}
+.list-item:last-child {
+  margin-right: 0;
+}
+.list-link {
+  text-decoration: none;
+  font-size: 18px;
+  color: #ff5722 !important;
+}
+
+.active {
+  /* background-color: red; */
+  color: blue !important;
+  padding: 0 10px;
 }

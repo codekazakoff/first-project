@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Like from "./Like";
+import MovieLine from "./MovieLine";
 
 class TableBody extends Component {
   constructor(props) {
@@ -11,17 +11,13 @@ class TableBody extends Component {
     const { onLike, data, onDelete } = this.props;
     return (
       <tbody>
-        {data.map(({ id, title, genre, stock, rate, isLiked }) => (
-          <tr key={id}>
-            <td>{title}</td>
-            <td>{genre}</td>
-            <td>{stock}</td>
-            <td>{rate}</td>
-            <td className="last-child">
-              <Like onLike={onLike} isLiked={isLiked} id={id} />
-              <button onClick={() => onDelete(id)}>Delete</button>
-            </td>
-          </tr>
+        {data.map((item) => (
+          <MovieLine
+            key={item.id}
+            item={item}
+            onDelete={onDelete}
+            onLike={onLike}
+          />
         ))}
       </tbody>
     );
