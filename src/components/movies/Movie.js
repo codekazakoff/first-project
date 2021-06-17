@@ -1,36 +1,19 @@
 import React, { Component } from "react";
 import { getMovies } from "../../db/fakeServis";
-// import { selectGenreOne } from "../../db/fakeTypeMovies";
+import { selectGenreOne } from "../../db/fakeTypeMovies";
 import TableMovies from "./MoviesTable";
 import ListGroup from "./ListGroup";
 import "../../css/movies/movies.css";
 
-const selectGenreMovie = [
-  {
-    genre: "Barchasi",
-  },
-  {
-    id: "11",
-    genre: "Action",
-  },
-  {
-    id: "12",
-    genre: "Thriller",
-  },
-  {
-    id: "13",
-    genre: "Comedy",
-  },
-];
 class Movies extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cinemas: getMovies(),
-      // selectGenre: selectGenreOne(),
-      selectGenre: selectGenreMovie,
-      selectedGenre: {} || null,
-      color: "red",
+      selectGenre: selectGenreOne(),
+      selectedGenre: {
+        genre: "Barchasi",
+      },
     };
   }
 
@@ -52,24 +35,24 @@ class Movies extends Component {
   handleSelectMovie = (selectedGenre) => {
     this.setState({ selectedGenre });
   };
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this.setState({ color: "Yellow" });
-  //   }, 1000);
-  // }
-  componentDidUpdate() {
-    document.getElementById("mydiv").innerHTML =
-      "The updated favorite is " + this.state.color;
-  }
+
+  filterRender = () => {
+    const { selectedGenre, cinemas } = this.state;
+    const filter =
+      selectedGenre?.genre !== "Barchasi"
+        ? cinemas.filter((cinema) => cinema.genre === selectedGenre.genre)
+        : cinemas;
+    return filter;
+  };
+
   render() {
-    const { cinemas, selectGenre, selectedGenre } = this.state;
+    const { selectGenre } = this.state;
+    const { handleDelete, handleLike, handleSelectMovie, filterRender } = this;
 
-    const filter = selectedGenre.id
-      ? cinemas.filter((cinema) => cinema.genre === selectedGenre.genre)
-      : cinemas;
+    filterRender();
 
-    const count = cinemas.length;
-    const { handleDelete, handleLike, handleSelectMovie } = this;
+    const count = filterRender().length;
+    console.log(filterRender());
     return (
       <>
         <section>
@@ -83,11 +66,10 @@ class Movies extends Component {
                 handleSelectMovie={handleSelectMovie}
               />
               <TableMovies
-                data={filter}
+                data={filterRender()}
                 onDelete={handleDelete}
                 onLike={handleLike}
               />
-              {/* <div id="mydiv"></div> */}
             </div>
           )}
         </section>
