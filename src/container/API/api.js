@@ -52,20 +52,19 @@ class Api extends Component {
   };
 
   render() {
-    const { data } = this.state;
+    const { data, isLoading } = this.state;
     const { handleLike, handleDelete, handleUpdate } = this;
-    if (this.state.isLoading) {
-      return (
-        <Loader
-          className="loader"
-          type="MutatingDots"
-          color="#00BFFF"
-          height={100}
-          width={100}
-        />
-      );
-    } else {
-      return (
+    return (
+      <>
+        {isLoading && (
+          <Loader
+            className="loader"
+            type="MutatingDots"
+            color="#00BFFF"
+            height={100}
+            width={100}
+          />
+        )}
         <div className="container">
           <div className="row">
             <table>
@@ -79,8 +78,8 @@ class Api extends Component {
             </table>
           </div>
         </div>
-      );
-    }
+      </>
+    );
   }
 }
 

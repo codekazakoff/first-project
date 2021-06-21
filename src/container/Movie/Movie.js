@@ -79,13 +79,13 @@ class Movies extends Component {
                 selectGenre={selectGenre}
                 handleSelectMovie={handleSelectMovie}
                 isUpdate={isUpdate}
-                MovieUpdate={() => handleUpdateMovie()}
+                MovieUpdate={handleUpdateMovie}
               />
               <TableMovies
                 data={filterRender()}
                 onDelete={handleDelete}
                 onLike={handleLike}
-                MovieUpdate={() => handleUpdateMovie()}
+                MovieUpdate={handleUpdateMovie}
               />
             </>
           )}

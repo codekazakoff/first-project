@@ -6,38 +6,43 @@ class OneForm extends Component {
     super(props);
 
     this.state = {
-      name: "",
-      age: "",
-      phone: "",
+      user: {
+        name: "",
+        age: "",
+        phone: "",
+      },
     };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { name, age, phone } = this.state;
-    const newUser = { name, age, phone };
-    this.setState({ name: "", age: "", phone: "" });
+    const {
+      user: { name, age, phone },
+    } = this.state;
+    const newUser = { ...this.state.user, name, age, phone };
     console.log(newUser);
   };
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
-    //  console.log(e.target.value);
+    this.setState({ user: { ...this.state.user, [name]: value } });
   };
 
   render() {
+    const {
+      user: { name, age, phone },
+    } = this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <div className="form-container">
         <p>
-          {this.state.name} {this.state.age} {this.state.phone}
+          {name}, {age}, {phone}
         </p>
         <form className="form" onSubmit={handleSubmit}>
           <input
             name="name"
             type="text"
-            value={this.state.name}
+            value={name}
             className="input one-form-input"
             placeholder="Enter Your Name"
             onChange={handleChange}
@@ -45,7 +50,7 @@ class OneForm extends Component {
           <input
             name="age"
             type="number"
-            value={this.state.age}
+            value={age}
             className="input one-form-input"
             placeholder="Enter Your Age"
             onChange={handleChange}
@@ -53,7 +58,7 @@ class OneForm extends Component {
           <input
             name="phone"
             type="number"
-            value={this.state.phone}
+            value={phone}
             className="input one-form-input"
             placeholder="Enter Your Phone"
             onChange={handleChange}

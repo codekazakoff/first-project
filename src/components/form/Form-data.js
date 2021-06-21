@@ -1,10 +1,36 @@
 import React, { Component } from "react";
 import "../../css/form/form.css";
 class FormData extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      movie: {
+        title: "",
+        genre: "",
+        stock: "",
+        rate: "",
+        isLike: true,
+      },
+    };
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ movie: { ...this.state.movie, [name]: value } });
+    console.log(this.state.movie);
+  };
+
   render() {
+    const { handleSubmit, handleChange } = this;
+
     return (
       <div className="form-container">
-        <form action="" className="form">
+        <form onSubmit={handleSubmit} className="form">
           <div className="form__data">
             <label htmlFor="title" className="form__label">
               Title
@@ -14,6 +40,8 @@ class FormData extends Component {
               name="title"
               id="title"
               autoFocus
+              //   value={title}
+              onChange={handleChange}
               className="form__title input"
               placeholder="Enter Your Title"
             />
@@ -44,6 +72,8 @@ class FormData extends Component {
               type="number"
               name="stock"
               id="stock"
+              //   value={stock}
+              onChange={handleChange}
               className="form__title number"
               placeholder="Enter Your Stock"
             />
@@ -57,6 +87,8 @@ class FormData extends Component {
               type="number"
               name="rate"
               id="rate"
+              //   value={rate}
+              onChange={handleChange}
               className="form__title number"
               placeholder="Enter Your Rate"
             />
@@ -70,6 +102,7 @@ class FormData extends Component {
               type="radio"
               name="isLike"
               id="isLike"
+              onChange={handleChange}
               className="form__title radio"
             />
 
@@ -80,6 +113,7 @@ class FormData extends Component {
               type="radio"
               name="isLike"
               id="like"
+              onChange={handleChange}
               className="form__title radio"
             />
           </div>
