@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Api from "./components/movies/api/api";
-// import Movies from "./components/movies/Movie.js";
+// import Api from "./container/API/api";
+import Movies from "./container/Movie/Movie";
 class App extends Component {
   render() {
     return (
       <>
-        {/* <Movies /> */}
-        <Api />
+        <Movies />
+        {/* <Api /> */}
       </>
     );
   }

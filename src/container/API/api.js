@@ -1,17 +1,31 @@
 import React, { Component } from "react";
-import "../../../css/api/api.css";
-import ApiTableHeader from "./ApiTableHeader";
-import ApiTableBody from "./ApiTableBody";
+import Loader from "react-loader-spinner";
+import ApiTableHeader from "../../components/movies/api/ApiTableHeader";
+import ApiTableBody from "../../components/movies/api/ApiTableBody";
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "../../css/api/api.css";
 
 const url = "http://jsonplaceholder.typicode.com/todos";
 
 class Api extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      data: ["salom"],
+      data: [],
+      isLoading: true,
     };
+  }
+
+  async componentDidMount() {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      this.setState({ data, isLoading: false });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   handleLike = (id) => {
@@ -21,11 +35,13 @@ class Api extends Component {
     );
     this.setState({ data: user });
   };
+
   handleDelete = (id) => {
     const { data } = this.state;
     const deleted = data.filter((item) => item.id !== id);
     this.setState({ data: deleted });
   };
+
   handleUpdate = (id) => {
     const { data } = this.state;
     const description = { userId: 1, id: 1, title: "Salom", completed: true };
@@ -33,19 +49,23 @@ class Api extends Component {
       item.id === id ? (item = description) : item
     );
     this.setState({ data: update });
-    console.log(id);
   };
-  async componentDidMount() {
-    const res = await fetch(url);
-    const data = await res.json();
-    this.setState({ data });
-  }
 
   render() {
     const { data } = this.state;
     const { handleLike, handleDelete, handleUpdate } = this;
-    return (
-      <>
+    if (this.state.isLoading) {
+      return (
+        <Loader
+          className="loader"
+          type="MutatingDots"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      );
+    } else {
+      return (
         <div className="container">
           <div className="row">
             <table>
@@ -59,8 +79,8 @@ class Api extends Component {
             </table>
           </div>
         </div>
-      </>
-    );
+      );
+    }
   }
 }
 

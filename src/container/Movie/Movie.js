@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getMovies } from "../../db/fakeServis";
 import { selectGenreOne } from "../../db/fakeTypeMovies";
-import TableMovies from "./MoviesTable";
-import ListGroup from "./ListGroup";
+import TableMovies from "../../components/movies/MoviesTable";
+import ListGroup from "../../components/movies/ListGroup";
 import "../../css/movies/movies.css";
 
 class Movies extends Component {
