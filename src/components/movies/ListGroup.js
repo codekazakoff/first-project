@@ -4,16 +4,9 @@ import "../../css/movies/movies.css";
 import Form from "../../container/Form/Form";
 import Switch from "../form/Switch";
 class ListGroup extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isUpdate: false,
-    };
-  }
   render() {
-    const { selectGenre, handleSelectMovie } = this.props;
-    const { isUpdate } = this.state;
+    const { selectGenre, handleSelectMovie, isUpdate, MovieUpdate } =
+      this.props;
     return (
       <div className="list-display">
         <ul className="list-group">
@@ -29,10 +22,7 @@ class ListGroup extends Component {
             </li>
           ))}
         </ul>
-        <Switch
-          isUpdate={isUpdate}
-          onClickUpdate={() => this.setState({ isUpdate: !isUpdate })}
-        />
+        <Switch isUpdate={isUpdate} MovieUpdate={MovieUpdate} />
         {isUpdate && <Form />}
       </div>
     );
@@ -41,5 +31,7 @@ class ListGroup extends Component {
 ListGroup.propTypes = {
   selectGenre: PropTypes.array,
   handleSelectMovie: PropTypes.func,
+  MovieUpdate: PropTypes.func,
+  isUpdate: PropTypes.bool,
 };
 export default ListGroup;

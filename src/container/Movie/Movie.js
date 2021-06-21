@@ -3,17 +3,20 @@ import { getMovies } from "../../db/fakeServis";
 import { selectGenreOne } from "../../db/fakeTypeMovies";
 import TableMovies from "../../components/movies/MoviesTable";
 import ListGroup from "../../components/movies/ListGroup";
+
 import "../../css/movies/movies.css";
 
 class Movies extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       cinemas: getMovies(),
       selectGenre: selectGenreOne(),
       selectedGenre: {
         genre: "Barchasi",
       },
+      isUpdate: false,
     };
   }
 
@@ -36,6 +39,11 @@ class Movies extends Component {
     this.setState({ selectedGenre });
   };
 
+  handleUpdateMovie = () => {
+    const { isUpdate } = this.state;
+    this.setState({ isUpdate: !isUpdate });
+  };
+
   filterRender = () => {
     const { selectedGenre, cinemas } = this.state;
     const filter =
@@ -46,31 +54,40 @@ class Movies extends Component {
   };
 
   render() {
-    const { selectGenre } = this.state;
-    const { handleDelete, handleLike, handleSelectMovie, filterRender } = this;
+    const { selectGenre, isUpdate } = this.state;
+    const {
+      handleDelete,
+      handleLike,
+      handleSelectMovie,
+      handleUpdateMovie,
+      filterRender,
+    } = this;
 
     filterRender();
 
     const count = filterRender().length;
-    console.log(filterRender());
+
     return (
       <>
         <section>
           {count === 0 ? (
             <h4>Bizda mahsulotlar umuman qolmagan</h4>
           ) : (
-            <div>
+            <>
               <h4>Bizda {count} ta mahsulot bor</h4>
               <ListGroup
                 selectGenre={selectGenre}
                 handleSelectMovie={handleSelectMovie}
+                isUpdate={isUpdate}
+                MovieUpdate={() => handleUpdateMovie()}
               />
               <TableMovies
                 data={filterRender()}
                 onDelete={handleDelete}
                 onLike={handleLike}
+                MovieUpdate={() => handleUpdateMovie()}
               />
-            </div>
+            </>
           )}
         </section>
       </>

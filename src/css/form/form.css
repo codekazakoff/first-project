@@ -63,3 +63,8 @@
   float: right;
   clear: both;
 }
+
+.one-form-input {
+  margin: 15px 0;
+  outline: none;
+}
