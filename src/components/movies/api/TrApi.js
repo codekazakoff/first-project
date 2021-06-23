@@ -16,7 +16,7 @@ class TrApi extends Component {
         <td>{id}</td>
         <td>{title}</td>
         <td>
-          <ApiLike isLike={completed} onLike={onLike} id={id} />
+          <ApiLike isLiked={completed} onLike={onLike} id={id} />
         </td>
         <td>
           <button onClick={() => onDelete(id)}>Delete</button>

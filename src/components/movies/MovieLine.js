@@ -14,7 +14,7 @@ export default class MovieLine extends Component {
           <td className="last-child">
             <Like onLike={onLike} isLiked={item.isLiked} id={item.id} />
             <button onClick={() => onDelete(item.id)}>Delete</button>
-            <button onClick={MovieUpdate} className="update">
+            <button onClick={() => MovieUpdate(item.id)} className="update">
               Update
             </button>
           </td>

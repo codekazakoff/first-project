@@ -13,10 +13,17 @@ class Movies extends Component {
     this.state = {
       cinemas: getMovies(),
       selectGenre: selectGenreOne(),
+      isUpdate: false,
       selectedGenre: {
         genre: "Barchasi",
       },
-      isUpdate: false,
+      movie: {
+        title: "",
+        genre: "",
+        stock: "",
+        rate: "",
+        isLiked: true,
+      },
     };
   }
 
@@ -39,9 +46,35 @@ class Movies extends Component {
     this.setState({ selectedGenre });
   };
 
-  handleUpdateMovie = () => {
+  handleUpdateMovie = (id) => {
+    const { cinemas, movie } = this.state;
+    const cinema = cinemas.map((item) =>
+      item.id === id ? (item = movie) : item
+    );
+    console.log(id);
     const { isUpdate } = this.state;
-    this.setState({ isUpdate: !isUpdate });
+    this.setState({ isUpdate: !isUpdate, cinemas: cinema });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState((prevState) => ({
+      cinemas: [
+        { ...prevState.movie, id: prevState.cinemas.length + 1 },
+        ...prevState.cinemas,
+      ],
+    }));
+  };
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      movie: {
+        ...this.state.movie,
+        [name]: value === "true" ? true : value === "false" ? false : value,
+      },
+    });
+    console.log(this.state.movie);
   };
 
   filterRender = () => {
@@ -54,13 +87,15 @@ class Movies extends Component {
   };
 
   render() {
-    const { selectGenre, isUpdate } = this.state;
+    const { selectGenre, isUpdate, movie } = this.state;
     const {
       handleDelete,
       handleLike,
       handleSelectMovie,
       handleUpdateMovie,
       filterRender,
+      handleChange,
+      handleSubmit,
     } = this;
 
     filterRender();
@@ -80,6 +115,9 @@ class Movies extends Component {
                 handleSelectMovie={handleSelectMovie}
                 isUpdate={isUpdate}
                 MovieUpdate={handleUpdateMovie}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                movie={movie}
               />
               <TableMovies
                 data={filterRender()}

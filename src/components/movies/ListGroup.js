@@ -5,8 +5,15 @@ import Form from "../../container/Form/Form";
 import Switch from "../form/Switch";
 class ListGroup extends Component {
   render() {
-    const { selectGenre, handleSelectMovie, isUpdate, MovieUpdate } =
-      this.props;
+    const {
+      movie,
+      isUpdate,
+      MovieUpdate,
+      selectGenre,
+      handleSubmit,
+      handleChange,
+      handleSelectMovie,
+    } = this.props;
     return (
       <div className="list-display">
         <ul className="list-group">
@@ -23,15 +30,24 @@ class ListGroup extends Component {
           ))}
         </ul>
         <Switch isUpdate={isUpdate} MovieUpdate={MovieUpdate} />
-        {isUpdate && <Form />}
+        {isUpdate && (
+          <Form
+            handleChange={handleChange}
+            movie={movie}
+            handleSubmit={handleSubmit}
+          />
+        )}
       </div>
     );
   }
 }
 ListGroup.propTypes = {
+  movie: PropTypes.object,
+  isUpdate: PropTypes.bool,
+  MovieUpdate: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
   selectGenre: PropTypes.array,
   handleSelectMovie: PropTypes.func,
-  MovieUpdate: PropTypes.func,
-  isUpdate: PropTypes.bool,
 };
 export default ListGroup;
