@@ -49,7 +49,7 @@ class Movies extends Component {
   handleUpdateMovie = (id) => {
     const { cinemas, movie } = this.state;
     const cinema = cinemas.map((item) =>
-      item.id === id ? (item = movie) : item
+      item.id === id ? { ...item, ...movie } : item
     );
     console.log(id);
     const { isUpdate } = this.state;
