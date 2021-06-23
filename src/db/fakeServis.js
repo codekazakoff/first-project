@@ -5,6 +5,7 @@ const movies = [
     genre: "action",
     stock: 6,
     rate: 2.5,
+    isLiked: true,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const movies = [
     genre: "action",
     stock: 5,
     rate: 2.5,
+    isLiked: false,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const movies = [
     genre: "thriller",
     stock: 6,
     rate: 3.5,
+    isLiked: true,
   },
   {
     id: 4,
@@ -26,6 +29,7 @@ const movies = [
     genre: "comedy",
     stock: 8,
     rate: 3.5,
+    isLiked: false,
   },
   {
     id: 5,
@@ -33,6 +37,7 @@ const movies = [
     genre: "comedy",
     stock: 7,
     rate: 3.5,
+    isLiked: true,
   },
   {
     id: 6,
@@ -40,6 +45,7 @@ const movies = [
     genre: "thriller",
     stock: 7,
     rate: 4.5,
+    isLiked: false,
   },
   {
     id: 7,
@@ -47,6 +53,7 @@ const movies = [
     genre: "action",
     stock: 8,
     rate: 4.5,
+    isLiked: false,
   },
   {
     id: 8,
@@ -54,6 +61,7 @@ const movies = [
     genre: "thriller",
     stock: 6,
     rate: 5.5,
+    isLiked: true,
   },
   {
     id: 9,
@@ -61,6 +69,7 @@ const movies = [
     genre: "comedy",
     stock: 5,
     rate: 3.5,
+    isLiked: false,
   },
 ];
 export const getMovies = () => {

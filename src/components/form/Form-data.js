@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../css/form/form.css";
+import Input from "./Input";
 class FormData extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,6 @@ class FormData extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ movie: { ...this.state.movie, [name]: value } });
-    console.log(this.state.movie);
   };
 
   render() {
@@ -31,22 +31,16 @@ class FormData extends Component {
     return (
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
-          <div className="form__data">
-            <label htmlFor="title" className="form__label">
-              Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              autoFocus
-              //   value={title}
-              onChange={handleChange}
-              className="form__title input"
-              placeholder="Enter Your Title"
-            />
-          </div>
-
+          <Input
+            name="title"
+            id="title"
+            label="Title"
+            autoFocus
+            // value={title}
+            onChange={handleChange}
+            className="form__title input"
+            placeholder="Enter Your Title"
+          />
           <div className="form__data">
             <label htmlFor="genre" className="form__label">
               Genre
@@ -64,35 +58,26 @@ class FormData extends Component {
             </select>
           </div>
 
-          <div className="form__data">
-            <label htmlFor="stock" className="form__label">
-              Stock
-            </label>
-            <input
-              type="number"
-              name="stock"
-              id="stock"
-              //   value={stock}
-              onChange={handleChange}
-              className="form__title number"
-              placeholder="Enter Your Stock"
-            />
-          </div>
-
-          <div className="form__data">
-            <label htmlFor="rate" className="form__label">
-              Rate
-            </label>
-            <input
-              type="number"
-              name="rate"
-              id="rate"
-              //   value={rate}
-              onChange={handleChange}
-              className="form__title number"
-              placeholder="Enter Your Rate"
-            />
-          </div>
+          <Input
+            name="stock"
+            id="stock"
+            label="Stock"
+            type="number"
+            // value={stock}
+            onChange={handleChange}
+            className="form__title number"
+            placeholder="Enter Your Stock"
+          />
+          <Input
+            name="rate"
+            id="rate"
+            label="Rate"
+            type="number"
+            // value={rate}
+            onChange={handleChange}
+            className="form__title number"
+            placeholder="Enter Your Rate"
+          />
 
           <div className="form__data">
             <label htmlFor="isLike" className="form__label radio__label">

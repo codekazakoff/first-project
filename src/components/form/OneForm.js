@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../css/form/form.css";
+import OneInput from "./OneInput";
 
 class OneForm extends Component {
   constructor(props) {
@@ -10,6 +11,10 @@ class OneForm extends Component {
         name: "",
         age: "",
         phone: "",
+        adress: {
+          city: "",
+          zipecoder: "",
+        },
       },
     };
   }
@@ -17,37 +22,74 @@ class OneForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {
-      user: { name, age, phone },
+      user: {
+        name,
+        age,
+        phone,
+        adress: { city, zipecoder },
+      },
     } = this.state;
-    const newUser = { ...this.state.user, name, age, phone };
+
+    const newUser = { ...this.state.user, name, age, phone, city, zipecoder };
     console.log(newUser);
   };
 
-  handleChange = (e) => {
+  handleChange = (e, type) => {
     const { name, value } = e.target;
-    this.setState({ user: { ...this.state.user, [name]: value } });
+    if (type === "nested") {
+      this.setState((prevState) => ({
+        ...prevState,
+        user: {
+          ...prevState.user,
+          adress: {
+            ...prevState.user.adress,
+            [name]: value,
+          },
+        },
+      }));
+    } else {
+      this.setState((prevState) => ({
+        user: { ...prevState.user, [name]: value },
+      }));
+    }
   };
 
   render() {
     const {
       user: { name, age, phone },
     } = this.state;
+    const {
+      user: {
+        adress: { city, zipecoder },
+      },
+    } = this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <div className="form-container">
-        <p>
-          {name}, {age}, {phone}
-        </p>
         <form className="form" onSubmit={handleSubmit}>
-          <input
+          <OneInput
+            name="city"
+            value={city}
+            onChange={(e) => handleChange(e, "nested")}
+            placeholder="Enter Your City"
+            className="input one-form-input"
+          />
+          <OneInput
+            name="zipecoder"
+            value={zipecoder}
+            className="input one-form-input"
+            placeholder="Enter Your Zipecoder"
+            onChange={(e) => handleChange(e, "nested")}
+          />
+
+          <OneInput
             name="name"
-            type="text"
             value={name}
             className="input one-form-input"
             placeholder="Enter Your Name"
             onChange={handleChange}
           />
-          <input
+          <OneInput
             name="age"
             type="number"
             value={age}
@@ -55,7 +97,7 @@ class OneForm extends Component {
             placeholder="Enter Your Age"
             onChange={handleChange}
           />
-          <input
+          <OneInput
             name="phone"
             type="number"
             value={phone}
