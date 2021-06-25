@@ -8,12 +8,13 @@ class TableBody extends Component {
     this.state = {};
   }
   render() {
-    const { onLike, data, onDelete, MovieUpdate, isUpdate } = this.props;
+    const { onLike, data, onDelete, MovieUpdate, isUpdate, movie } = this.props;
     return (
       <tbody>
         {data.map((item) => (
           <MovieLine
             key={item.id}
+            movie={movie}
             item={item}
             isUpdate={isUpdate}
             onDelete={onDelete}
@@ -31,6 +32,7 @@ TableBody.propTypes = {
   isUpdate: PropTypes.bool,
   onDelete: PropTypes.func,
   onLike: PropTypes.func,
+  movie: PropTypes.object,
   MovieUpdate: PropTypes.func,
 };
 

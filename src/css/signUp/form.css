@@ -1,0 +1,16 @@
+.form-check {
+  margin-top: 15px !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.checkbox:active {
+  outline: none !important;
+  --webkit-box-shadow: none !important;
+}
+
+* {
+  --webkit-box-shadow: none !important;
+}

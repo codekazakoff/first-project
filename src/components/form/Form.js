@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import FormData from "../../components/form/Form-data";
+import FormData from "../../container/Form/Form-data";
 
 class Form extends Component {
   render() {

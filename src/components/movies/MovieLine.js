@@ -25,6 +25,7 @@ export default class MovieLine extends Component {
 }
 MovieLine.propTypes = {
   item: PropTypes.object,
+//   movie: PropTypes.object,
   onLike: PropTypes.func,
   onDelete: PropTypes.func,
   MovieUpdate: PropTypes.func,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../../css/movies/movies.css";
-import Form from "../../container/Form/Form";
+import Form from "../form/Form";
 import Switch from "../form/Switch";
 class ListGroup extends Component {
   render() {
