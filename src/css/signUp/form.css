@@ -11,6 +11,17 @@
   --webkit-box-shadow: none !important;
 }
 
+.form-control-range {
+  margin-left: 5px !important;
+}
+
+.errors {
+  font-size: 14px;
+  color: #ff5262;
+  margin: 5px 0;
+  display: block;
+}
+
 * {
   --webkit-box-shadow: none !important;
 }

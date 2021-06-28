@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Like from "./Like";
 export default class MovieLine extends Component {
   render() {
-    const { item, onLike, onDelete, MovieUpdate } = this.props;
+    const { item, onLike, onDelete, handleUpdateMovieUpdate } = this.props;
     return (
       <>
         <tr key={item.id}>
@@ -14,7 +14,10 @@ export default class MovieLine extends Component {
           <td className="last-child">
             <Like onLike={onLike} isLiked={item.isLiked} id={item.id} />
             <button onClick={() => onDelete(item.id)}>Delete</button>
-            <button onClick={() => MovieUpdate(item.id)} className="update">
+            <button
+              onClick={() => handleUpdateMovieUpdate(item.id)}
+              className="update"
+            >
               Update
             </button>
           </td>
@@ -27,5 +30,5 @@ MovieLine.propTypes = {
   item: PropTypes.object,
   onLike: PropTypes.func,
   onDelete: PropTypes.func,
-  MovieUpdate: PropTypes.func,
+  handleUpdateMovieUpdate: PropTypes.func,
 };

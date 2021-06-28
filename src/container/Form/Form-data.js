@@ -8,9 +8,9 @@ class FormData extends Component {
     const {
       handleChange,
       handleSubmit,
-      movie: { title, stock, rate, isLiked, genre },
+      movie: { title, stock, rate, genre },
     } = this.props;
-    console.log(isLiked);
+    //  console.log(isLiked);
     return (
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">

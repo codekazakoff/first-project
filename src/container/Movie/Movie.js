@@ -47,6 +47,8 @@ class Movies extends Component {
   };
 
   handleUpdateMovieUpdate = (id) => {
+    const { isUpdate } = this.state;
+    this.setState({ isUpdate: !isUpdate });
     console.log(id);
   };
   handleUpdateMovie = () => {
@@ -64,7 +66,7 @@ class Movies extends Component {
       ],
       isUpdate: !prevState.isUpdate,
     }));
-    console.log(this.state.isUpdate.value);
+    //  console.log(this.state.isUpdate.value);
   };
 
   handleChange = (e) => {
@@ -75,7 +77,6 @@ class Movies extends Component {
         [name]: value === "true" ? true : value === "false" ? false : value,
       },
     });
-    console.log(this.state.movie);
   };
 
   filterRender = () => {
