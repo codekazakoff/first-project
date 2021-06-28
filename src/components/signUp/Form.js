@@ -25,10 +25,6 @@ class SignUp extends Component {
       ...prevState,
       form: { ...prevState.form, [Name]: value },
     }));
-
-    const { email, password, name, select, range, radio, checkbox } =
-      this.state.form;
-    const errors = {};
   };
 
   checkboxHandler = (e) => {
