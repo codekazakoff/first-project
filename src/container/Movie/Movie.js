@@ -11,12 +11,12 @@ class Movies extends Component {
     super(props);
 
     this.state = {
-      cinemas: getMovies(),
-      selectGenre: selectGenreOne(),
-      isUpdate: false,
       selectedGenre: {
-        genre: "Barchasi",
+        genre: "barchasi",
       },
+      selectGenre: selectGenreOne(),
+      cinemas: getMovies(),
+      isUpdate: false,
       movie: {
         title: "",
         genre: "",
@@ -24,46 +24,47 @@ class Movies extends Component {
         rate: "",
         isLiked: true,
       },
+      errors: {},
     };
   }
 
   handleDelete = (id) => {
-    const { cinemas } = this.state;
-    this.setState({
-      cinemas: cinemas.filter((cinema) => cinema.id !== id),
-    });
+    this.setState((prevState) => ({
+      cinemas: prevState.cinemas.filter((cinema) => cinema.id !== id),
+    }));
   };
 
   handleLike = (id) => {
-    const { cinemas } = this.state;
-    const movies = cinemas.map((movie) =>
-      movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
-    );
-    this.setState({ cinemas: movies });
+    this.setState((prevState) => ({
+      cinemas: prevState.cinemas.map((movie) =>
+        movie.id === id ? { ...movie, isLiked: !movie.isLiked } : movie
+      ),
+    }));
   };
 
   handleSelectMovie = (selectedGenre) => {
     this.setState({ selectedGenre });
   };
 
-  handleUpdateMovie = (id) => {
-    const { cinemas, movie } = this.state;
-    const cinema = cinemas.map((item) =>
-      item.id === id ? { ...item, ...movie } : item
-    );
+  handleUpdateMovieUpdate = (id) => {
     console.log(id);
+  };
+  handleUpdateMovie = () => {
     const { isUpdate } = this.state;
-    this.setState({ isUpdate: !isUpdate, cinemas: cinema });
+    this.setState({ isUpdate: !isUpdate });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     this.setState((prevState) => ({
       cinemas: [
-        { ...prevState.movie, id: prevState.cinemas.length + 1 },
         ...prevState.cinemas,
+        { ...prevState.movie, id: prevState.cinemas.length + 1 },
       ],
+      isUpdate: !prevState.isUpdate,
     }));
+    console.log(this.state.isUpdate.value);
   };
 
   handleChange = (e) => {
@@ -80,7 +81,7 @@ class Movies extends Component {
   filterRender = () => {
     const { selectedGenre, cinemas } = this.state;
     const filter =
-      selectedGenre?.genre !== "Barchasi"
+      selectedGenre?.genre !== "barchasi"
         ? cinemas.filter((cinema) => cinema.genre === selectedGenre.genre)
         : cinemas;
     return filter;
@@ -96,10 +97,10 @@ class Movies extends Component {
       filterRender,
       handleChange,
       handleSubmit,
+      handleUpdateMovieUpdate,
     } = this;
 
     filterRender();
-
     const count = filterRender().length;
 
     return (
@@ -123,7 +124,7 @@ class Movies extends Component {
                 data={filterRender()}
                 onDelete={handleDelete}
                 onLike={handleLike}
-                MovieUpdate={handleUpdateMovie}
+                handleUpdateMovieUpdate={handleUpdateMovieUpdate}
               />
             </>
           )}

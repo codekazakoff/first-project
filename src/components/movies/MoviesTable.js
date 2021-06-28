@@ -5,7 +5,7 @@ import TableBody from "./TableBody";
 
 class TableMovies extends Component {
   render() {
-    const { data, onDelete, onLike, MovieUpdate, movie } = this.props;
+    const { data, onDelete, onLike, handleUpdateMovieUpdate } = this.props;
     return (
       <>
         <table>
@@ -21,11 +21,10 @@ class TableMovies extends Component {
             </thead>
           </TableHeader>
           <TableBody
-            movie={movie}
             data={data}
             onDelete={onDelete}
             onLike={onLike}
-            MovieUpdate={MovieUpdate}
+            handleUpdateMovieUpdate={handleUpdateMovieUpdate}
           />
         </table>
       </>
@@ -38,7 +37,7 @@ TableMovies.propTypes = {
   onDelete: PropTypes.func,
   onLike: PropTypes.func,
   movie: PropTypes.object,
-  MovieUpdate: PropTypes.func,
+  handleUpdateMovieUpdate: PropTypes.func,
 };
 
 export default TableMovies;

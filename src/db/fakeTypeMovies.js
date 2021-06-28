@@ -1,18 +1,15 @@
 const selectGenreMovie = [
   {
-    genre: "Barchasi",
+    genre: "barchasi",
   },
   {
-    id: "11",
-    genre: "Action",
+    genre: "action",
   },
   {
-    id: "12",
-    genre: "Thriller",
+    genre: "thriller",
   },
   {
-    id: "13",
-    genre: "Comedy",
+    genre: "comedy",
   },
 ];
 

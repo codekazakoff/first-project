@@ -29,7 +29,6 @@ class ListGroup extends Component {
             </li>
           ))}
         </ul>
-        <Switch isUpdate={isUpdate} MovieUpdate={MovieUpdate} />
         {isUpdate && (
           <Form
             handleChange={handleChange}
@@ -37,6 +36,7 @@ class ListGroup extends Component {
             handleSubmit={handleSubmit}
           />
         )}
+        <Switch isUpdate={isUpdate} MovieUpdate={MovieUpdate} />
       </div>
     );
   }
