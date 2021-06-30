@@ -17,7 +17,6 @@ class SignUp extends Component {
     },
     errors: {},
   };
-  false;
 
   validateProparty = ({ name, value, checked }) => {
     if (name === "email" && value.trim() === "") return "Email is required";
@@ -77,14 +76,13 @@ class SignUp extends Component {
     e.preventDefault();
     const msg = this.validateSubmit();
 
-    if (msg) console.log(msg);
-    else console.log("Success! Welcome to Site");
+    if (msg) alert(msg);
+    else alert("Success! Welcome to Site");
   };
 
   render() {
     const { form, errors } = this.state;
     const { handleChange, hadleSubmit } = this;
-    //  console.log(this.state.errors);
     return (
       <Container>
         <Row className="mt-3">
