@@ -10,70 +10,81 @@ class SignUp extends Component {
     form: {
       email: "",
       password: "",
-      name: "",
+      item: "",
       select: "",
-      range: "",
       checkbox: false,
       radio: false,
     },
     errors: {},
   };
+  false;
 
-  handleChange = (e) => {
-    const { name: Name, value } = e.target;
-    this.setState((prevState) => ({
-      ...prevState,
-      form: { ...prevState.form, [Name]: value },
-    }));
+  validateProparty = ({ name, value, checked }) => {
+    if (name === "email" && value.trim() === "") return "Email is required";
+
+    if (name === "password" && value.trim() === "")
+      return "Password is required";
+
+    if (name === "item" && value.trim() === "") return "Name is required";
+
+    if (name === "select" && value.trim() === "") return "Select is required";
+
+    if (name === "checkbox" && checked === false) return "Checkbox is required";
+
+    if (name === "radio" && checked === false) return "Radio is required";
   };
 
-  checkboxHandler = (e) => {
-    const { checked, name } = e.target;
-    this.setState((prevState) => ({
-      ...prevState,
-      form: { ...prevState.form, [name]: checked },
-    }));
+  validateSubmit = () => {
+    const {
+      form: { email, password, item, select, checkbox, radio },
+    } = this.state;
+    if (
+      email.trim() === "" ||
+      password.trim() === "" ||
+      item.trim() === "" ||
+      select.trim() === "" ||
+      checkbox === false ||
+      radio === false
+    )
+      return "Please enter form all elements";
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value, checked } = target;
+    const errors = { ...this.state.errors };
+    //  const errors = {};
+    const msg = this.validateProparty(target);
+    if (msg) errors[name] = msg;
+    else delete errors[name];
+
+    console.log("errors", errors);
+    if (name === "checkbox" || name === "radio") {
+      this.setState((prevState) => ({
+        ...prevState,
+        form: { ...prevState.form, [name]: checked },
+        errors,
+      }));
+    } else {
+      this.setState((prevState) => ({
+        ...prevState,
+        form: { ...prevState.form, [name]: value },
+        errors,
+      }));
+    }
   };
 
   hadleSubmit = (e) => {
     e.preventDefault();
-    const { form } = this.state;
-    const newForm = form;
-    console.log(newForm);
-    const { email, password, name, select, range, radio, checkbox } = form;
-    const errors = {};
-    if (email.trim() === "") {
-      errors.email = "Email is Required";
-    }
-    if (password.trim() === "") {
-      errors.password = "Password is Required";
-    } else if (password.length > 4 && password.length < 8) {
-      errors.password = "Password is length max symbol 8 and min symbol 4";
-    }
-    if (name.trim() === "") {
-      errors.name = "Name is Required";
-    } else if (name.length > 0 && password.length < 15) {
-      errors.password = "Password is length max letters 15";
-    }
-    if (select.trim() === "" && select === 1) {
-      errors.select = "Select is Required";
-    }
-    if (range === 0) {
-      errors.range = "Range is Required";
-    }
-    if (checkbox === false) {
-      errors.checkbox = "Checkbox is Checked";
-    }
-    if (radio === false) {
-      errors.radio = "Radio is Checked";
-    }
-    this.setState({ errors });
+    const msg = this.validateSubmit();
+
+    if (msg) console.log(msg);
+    else console.log("Success! Welcome to Site");
   };
 
   render() {
     const { form, errors } = this.state;
-    const { handleChange, hadleSubmit, checkboxHandler } = this;
-    console.log(this.state.errors);
+    const { handleChange, hadleSubmit } = this;
+    //  console.log(this.state.errors);
     return (
       <Container>
         <Row className="mt-3">
@@ -99,11 +110,11 @@ class SignUp extends Component {
               />
 
               <SignInput
-                name="name"
+                name="item"
                 type="text"
-                value={form.name}
+                value={form.item}
                 placeholder="Name"
-                error={errors.name}
+                error={errors.item}
                 label="Enter your Name"
                 handleChange={handleChange}
               />
@@ -117,22 +128,13 @@ class SignUp extends Component {
                 handleChange={handleChange}
               />
 
-              <SignInput
-                type="range"
-                label="Result"
-                name="range"
-                value={form.range}
-                error={errors.range}
-                handleChange={handleChange}
-              />
-
               <SignCheck
                 name="checkbox"
                 type="checkbox"
                 label="Check me out"
                 error={errors.checkbox}
                 checked={form.checkbox}
-                handleChange={checkboxHandler}
+                handleChange={handleChange}
               />
 
               <SignCheck
@@ -141,7 +143,16 @@ class SignUp extends Component {
                 label="first radio"
                 error={errors.radio}
                 checked={form.radio}
-                handleChange={checkboxHandler}
+                handleChange={handleChange}
+              />
+
+              <SignCheck
+                type="radio"
+                name="radio"
+                label="Second radio"
+                error={errors.radio}
+                checked={form.radio}
+                handleChange={handleChange}
               />
 
               <Button
