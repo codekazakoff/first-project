@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import JoiSignIn from "./Joi-input-sign-in";
 import { Link } from "react-router-dom";
+import Joi from "joi-browser";
 import "../../css/signUp/joiSignIn.css";
 
 class JoiBrowser extends Component {
@@ -14,60 +16,108 @@ class JoiBrowser extends Component {
       errors: {},
     };
   }
+  schema = {
+    email: Joi.string().required().email().label("Email"),
+    password: Joi.string().required().min(8).label("Password"),
+  };
+
+  validateProperty = ({ name, value }) => {
+    const obj = { [name]: value };
+    const schema = { [name]: this.schema[name] };
+
+    const { error } = Joi.validate(obj, schema);
+
+    return error ? error.details[0].message : null;
+  };
+
+  validate = () => {
+    const { error } = Joi.validate(this.state.signIn, this.schema, {
+      abortEarly: false,
+    });
+
+    if (!error) return null;
+
+    const errors = {};
+
+    for (let item of error.details) {
+      errors[item.path[0]] = item.message;
+    }
+
+    return errors;
+  };
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+
+    const msg = this.validateProperty(target);
+
+    const errors = { ...this.state.errors };
+
+    if (msg) errors[name] = msg;
+    else delete errors[name];
+
+    this.setState((prevS) => ({
+      signIn: { ...prevS.signIn, [name]: value },
+      errors,
+    }));
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const errors = this.validate();
+
+    this.setState({ errors: errors || null });
+  };
 
   render() {
+    const { handleChange, handleSubmit } = this;
+    const {
+      signIn: { email, password },
+      errors,
+    } = this.state;
     return (
       <div className="wrapper">
-        <form className="form">
-          <div className="form__inner">
-            <div className="form__title">Sign In</div>
-            <div className="form__control">
-              <label htmlFor="email">Email</label>
-              <div className="form__input-group">
-                <button className="form__button-btn">
-                  <i className="fal fa-envelope"></i>
-                </button>
-                <input
-                  id="email"
-                  type="email"
-                  className="form__input-email"
-                  placeholder="enter your email"
-                />
-              </div>
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form__title">Sign In</div>
+
+          <JoiSignIn
+            type="email"
+            label="Email"
+            name="email"
+            value={email}
+            error={errors.email}
+            onChange={handleChange}
+          />
+
+          <JoiSignIn
+            type="password"
+            label="Password"
+            name="password"
+            value={password}
+            error={errors.password}
+            onChange={handleChange}
+          />
+
+          <div className="form__control">
+            <button className="form__button-sign-in">
+              <Link to="/sign-in" className="link-sign-in">
+                Sign In
+              </Link>
+            </button>
+          </div>
+
+          <div className="form__control-footer">
+            <div className="form__control-footer-title">
+              Do not have an account ?
+              <Link className="link" to="/sign-up">
+                SignUp now
+              </Link>
             </div>
-            <div className="form__control">
-              <label htmlFor="password">Password</label>
-              <div className="form__input-group">
-                <button className="form__button-btn">
-                  <i className="fal fa-envelope"></i>
-                </button>
-                <input
-                  id="password"
-                  type="password"
-                  className="form__input-email"
-                  placeholder="enter your password"
-                />
-              </div>
-            </div>
-            <div className="form__control">
-              <div className="form__button-sign-in">
-                <Link to="/sign-in" className="link-sign-in">
-                  Sign In
-                </Link>
-              </div>
-            </div>
-            <div className="form__control-footer">
-              <div className="form__control-footer-title">
-                Do not have an account ?
-                <Link className="link" to="/sign-up">
-                  SignUp now
-                </Link>
-              </div>
-              <div className="form__control-footer-text">
-                <Link to="/privacy-policy" className="link">
-                  Privacy Policy
-                </Link>
-              </div>
+            <div className="form__control-footer-text">
+              <Link to="/privacy-policy" className="link">
+                Privacy Policy
+              </Link>
             </div>
           </div>
         </form>

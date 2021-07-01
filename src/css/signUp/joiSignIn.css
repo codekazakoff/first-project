@@ -148,3 +148,8 @@
   text-align: center;
   cursor: pointer;
 }
+
+.errors {
+  color: #ff5252;
+  font-size: 12px;
+}

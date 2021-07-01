@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-class SignIn extends Component {
+class FormOne extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col-6 offset-3 mt-4"></div>
+        <div className="col-6 offset-3 mt-4">FormOne In Component</div>
       </div>
     );
   }
 }
 
-export default SignIn;
+export default FormOne;
