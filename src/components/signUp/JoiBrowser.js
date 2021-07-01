@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import JoiSignIn from "./Joi-input-sign-in";
-import { Link } from "react-router-dom";
 import Joi from "joi-browser";
 import "../../css/signUp/joiSignIn.css";
 
@@ -101,23 +100,23 @@ class JoiBrowser extends Component {
 
           <div className="form__control">
             <button className="form__button-sign-in">
-              <Link to="/sign-in" className="link-sign-in">
+              <span to="/sign-in" className="link-sign-in">
                 Sign In
-              </Link>
+              </span>
             </button>
           </div>
 
           <div className="form__control-footer">
             <div className="form__control-footer-title">
               Do not have an account ?
-              <Link className="link" to="/sign-up">
+              <span className="link" to="/sign-up">
                 SignUp now
-              </Link>
+              </span>
             </div>
             <div className="form__control-footer-text">
-              <Link to="/privacy-policy" className="link">
+              <span to="/privacy-policy" className="link">
                 Privacy Policy
-              </Link>
+              </span>
             </div>
           </div>
         </form>
