@@ -65,16 +65,14 @@ class JoiBrowser extends Component {
     e.preventDefault();
 
     const errors = this.validate();
-
-    this.setState({ errors: errors || null });
+    if (errors) this.setState({ errors: errors });
+    else return;
   };
 
   render() {
     const { handleChange, handleSubmit } = this;
-    const {
-      signIn: { email, password },
-      errors,
-    } = this.state;
+    const { signIn, errors } = this.state;
+    const { email, password } = signIn;
     return (
       <div className="wrapper">
         <form className="form" onSubmit={handleSubmit}>

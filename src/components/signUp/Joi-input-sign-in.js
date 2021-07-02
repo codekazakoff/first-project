@@ -10,11 +10,11 @@ const JoiSignIn = ({ label, type, name, onChange, value, error }) => {
         </button>
         <input
           id={type}
-          type={type}
-          placeholder={`enter your ${type}`}
           name={name}
+          type={type}
           value={value}
           onChange={onChange}
+          placeholder={`enter your ${type}`}
         />
       </div>
       {error && <span className="errors">{error}</span>}
