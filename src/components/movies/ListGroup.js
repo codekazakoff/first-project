@@ -11,7 +11,7 @@ class ListGroup extends Component {
       MovieUpdate,
       selectGenre,
       handleSubmit,
-      handleChange,
+      handleChange, 
       handleSelectMovie,
     } = this.props;
     return (
@@ -23,7 +23,7 @@ class ListGroup extends Component {
               onClick={() => handleSelectMovie(selectGenre)}
               key={selectGenre.genre}
             >
-              <a className="list-link" href="#all">
+              <a className="list-link" href="/">
                 {selectGenre.genre}
               </a>
             </li>

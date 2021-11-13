@@ -24,7 +24,7 @@ const Select = ({
           Action
         </option>
         <option value="comedy" className="form__option">
-          Comedy
+          Comedy  
         </option>
         <option value="thriller" className="form__option">
           Thriller
@@ -48,6 +48,7 @@ const Select = ({
       <label htmlFor="isLiked" className="form__label radio__label">
         {titleRadioTwo}
       </label>
+      
       <input
         type="radio"
         name="isLiked"
